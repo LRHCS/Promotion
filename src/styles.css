@@ -1,11 +1,13 @@
+@import url("https://fonts.cdnfonts.com/css/hk-groteks");
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  --card: #354259;
+  --main: #ece5c7;
+  --backgroundColor: azure;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,40 +17,43 @@
 }
 
 * {
-  border-radius: 10px;
+  margin: 0px;
+  color: var(--main);
+  font-family: "HK Grotesk", sans-serif;
 }
 
 .main {
   height: 100px;
-  flex-basis: 100%;
-  background-color: black;
-  color: white;
+  background-color: var(--card);
   font-size: 50px;
   text-align: center;
   vertical-align: middle;
   line-height: 100px;
+  border-radius: 0px 0px 10px 0px;
 }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
 }
 
 .element {
-  background-color: black;
+  background-color: var(--card);
   margin: 50px;
   font-size: 30px;
-  color: white;
+  color: var(--color);
   flex-basis: 25%;
   height: 100px;
-  top: 50%;
-  align-items: center;
   text-align: center;
   vertical-align: middle;
-  line-height: 40px;
+  line-height: 35px;
+  border-radius: 10px;
+  font-size: larger;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .element {
     flex-basis: 70%;
     margin: 30px;
@@ -58,13 +63,36 @@
   }
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1500px) {
   .element {
     flex-basis: 40%;
     margin: 30px;
   }
 }
 
-.element > p {
-  margin: 0;
+.input_grade {
+  width: 70%;
+  background-color: var(--card);
+  border: none;
+  border-bottom: 2px solid var(--main);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-size: medium;
+}
+.input_grade:focus {
+  border-bottom: 2px solid white;
+}
+
+.page {
+  margin: auto;
+  width: 100%;
+}
+
+button {
+  background-color: var(--card);
+  border: none;
+  margin: 0px;
+  padding: 5px;
+  border-radius: 0px 0px 10px 10px;
+  font-size: larger;
 }

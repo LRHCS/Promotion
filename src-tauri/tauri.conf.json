@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "pluspoint",
-    "version": "0.0.0"
+    "productName": "Promotion",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -23,16 +23,15 @@
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "icons/icon.ico",
+        "icons/icon.icns"
       ],
       "identifier": "com.lrhcs.dev",
       "targets": "all"
     },
     "windows":[
       {
-        "title" : "Grade Calculater",
+        "title" : "Promotion",
         "width": 800,
         "height": 600,
         "resizable": true,
@@ -50,8 +49,8 @@
         "fullscreen": false,
         "resizable": true,
         "title": "pluspoint",
-        "width": 800,
-        "height": 600
+        "width": 850,
+        "height": 700
       }
     ]
   }

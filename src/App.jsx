@@ -1,98 +1,14 @@
-/* import { useState } from "react";
-import "./App.css";
-import rule from "./rule";
-function App() {
-  const data = [
-    {
-      name: "Biologie",
-    },
-    {
-      name: "BG",
-    },
-    {
-      name: "Chemie",
-    },
-    {
-      name: "Deutsch",
-    },
-    {
-      name: "Englisch",
-    },
-    {
-      name: "EW",
-    },
-    {
-      name: "Französisch",
-    },
-    {
-      name: "Geschichte",
-    },
-    {
-      name: "Geografie",
-    },
-    {
-      name: "Informatik",
-    },
-    {
-      name: "Mathematik",
-    },
-    {
-      name: "Physik",
-    },
-    {
-      name: "Philosophie",
-    },
-    {
-      name: "sM",
-    },
-    {
-      name: "Sport",
-    },
-  ];
-
-  function points() {
-    let num = 0;
-    const plus_point = data.map((notes) => (num += rule(notes.note)));
-    return num;
-  }
-
-  function List() {
-    const [note, setNote] = useState();
-    const noteList = data.map((notes) => (
-      <div className="element" key={notes.name.toLowerCase()}>
-        <p>{notes.name}</p>
-        <p>
-          {<input type="text" onChange={(e) => setNote(e.target.value)} />}
-          {" > "} {rule(note)}
-        </p>
-      </div>
-    ));
-    return noteList;
-  }
-
-  return (
-    <div>
-      <div className="flex-container">
-        <div className="main">Your Point : {points()}</div>
-        {List()}
-      </div>
-    </div>
-  );
-}
-
-export default App;
- */
-
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import rule from "./rule";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { GrLinkNext } from "react-icons/gr";
 
 const subjects = [
   {
     name: "Biologie",
   },
   {
-    name: "BG",
+    name: "BG/Music",
   },
   {
     name: "Chemie",
@@ -125,13 +41,10 @@ const subjects = [
     name: "Physik",
   },
   {
-    name: "Philosophie",
+    name: "Philosophie/Religion",
   },
   {
     name: "sM",
-  },
-  {
-    name: "Sport",
   },
 ];
 
@@ -144,6 +57,16 @@ function calculateTotalPoints(grades) {
 }
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
+  const appStyle = {
+    backgroundColor: isDarkMode ? "#1f1f1f" : "azure",
+    color: isDarkMode ? "#f8f8f8" : "#333",
+  };
   const [grades, setGrades] = useState({});
 
   useEffect(() => {
@@ -158,38 +81,105 @@ function App() {
   }, [grades]);
 
   function handleGradeChange(subject, grade) {
-    const ruleValue = rule(grade) || 0;
-    setGrades((prevGrades) => ({
-      ...prevGrades,
-      [subject]: {
-        grade,
-        ruleValue,
-      },
-    }));
+    const parsedGrade = parseFloat(grade);
+    if (!isNaN(parsedGrade)) {
+      let ruleValue = rule(parsedGrade) || "-";
+      if (subject === "Informatik" || subject === "BG/Music") {
+        ruleValue /= 2;
+      }
+      setGrades((prevGrades) => ({
+        ...prevGrades,
+        [subject]: {
+          grade: parsedGrade,
+          ruleValue,
+        },
+      }));
+    } else {
+      setGrades((prevGrades) => {
+        const updatedGrades = { ...prevGrades };
+        delete updatedGrades[subject];
+        return updatedGrades;
+      });
+    }
+  }
+  function getColorFromValue(value) {
+    if (value === 2) {
+      return "green";
+    } else if (value >= 1.5) {
+      return "lime";
+    } else if (value >= 1) {
+      return "orange";
+    } else if (value >= 0.5) {
+      return "goldenrod";
+    } else if (value >= 0) {
+      return "orangered";
+    } else {
+      return "red";
+    }
+  }
+
+  function getColorFromTotalValue(value) {
+    if (value >= 2) {
+      return "green";
+    } else if (value >= 1.5) {
+      return "lime";
+    } else if (value >= 1) {
+      return "orange";
+    } else if (value >= 0.5) {
+      return "goldenrod";
+    } else if (value >= 0) {
+      return "orangered";
+    } else {
+      return "red";
+    }
   }
 
   return (
-    <div>
+    <div className="page" style={appStyle}>
+      <h1
+        className="main"
+        style={{
+          color: getColorFromTotalValue(
+            calculateTotalPoints(Object.values(grades))
+          ),
+        }}
+      >
+        {calculateTotalPoints(Object.values(grades))}
+      </h1>
+      <button onClick={toggleDarkMode}>
+        {isDarkMode ? (
+          <BsFillSunFill className="icon" />
+        ) : (
+          <BsFillMoonFill className="icon" />
+        )}
+      </button>
       <div className="flex-container">
-        <div className="main">
-          Your Point: {calculateTotalPoints(Object.values(grades))}
-        </div>
         {subjects.map((subject) => (
-          <div className="element" key={subject.name.toLowerCase()}>
-            <p>{subject.name}</p>
-            <p>
+          <div className="element" key={subject.name}>
+            <h3>{subject.name}</h3>
+            <div className="grade">
               <input
+                className="input_grade"
                 type="text"
                 value={grades[subject.name]?.grade || ""}
                 onChange={(e) =>
-                  handleGradeChange(subject.name, parseFloat(e.target.value))
+                  handleGradeChange(subject.name, e.target.value)
                 }
               />
               {" > "}
-              {grades[subject.name] && grades[subject.name].ruleValue !== 0
-                ? grades[subject.name].ruleValue
-                : 0}
-            </p>
+              {grades[subject.name] &&
+              grades[subject.name].ruleValue !== "-" ? (
+                <span
+                  style={{
+                    color: getColorFromValue(grades[subject.name].ruleValue),
+                  }}
+                >
+                  {grades[subject.name].ruleValue}
+                </span>
+              ) : (
+                "-"
+              )}
+            </div>
           </div>
         ))}
       </div>
