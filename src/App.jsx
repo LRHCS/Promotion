@@ -81,9 +81,9 @@ function App() {
   }, [grades]);
 
   function handleGradeChange(subject, grade) {
-    const parsedGrade = parseFloat(grade);
+    const parsedGrade = grade;
     if (!isNaN(parsedGrade)) {
-      let ruleValue = rule(parsedGrade) || "-";
+      let ruleValue = rule(parsedGrade) || 0;
       if (subject === "Informatik" || subject === "BG/Music") {
         ruleValue /= 2;
       }
@@ -167,8 +167,7 @@ function App() {
                 }
               />
               {" > "}
-              {grades[subject.name] &&
-              grades[subject.name].ruleValue !== "-" ? (
+              {grades[subject.name] && grades[subject.name].ruleValue !== 0 ? (
                 <span
                   style={{
                     color: getColorFromValue(grades[subject.name].ruleValue),
@@ -177,7 +176,7 @@ function App() {
                   {grades[subject.name].ruleValue}
                 </span>
               ) : (
-                "-"
+                0
               )}
             </div>
           </div>

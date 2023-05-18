@@ -96,3 +96,22 @@ button {
   border-radius: 0px 0px 10px 10px;
   font-size: larger;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+}
+
+*:focus {
+  outline: none;
+}
