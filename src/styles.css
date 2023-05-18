@@ -25,11 +25,12 @@
 .main {
   height: 100px;
   background-color: var(--card);
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
   vertical-align: middle;
   line-height: 100px;
   border-radius: 0px 0px 10px 0px;
+  width: 100%;
 }
 
 .flex-container {
@@ -98,7 +99,7 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
   border-radius: 10px;
 }
 

@@ -47,10 +47,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "resizable": true,
-        "title": "pluspoint",
-        "width": 850,
-        "height": 700
+        "resizable": false,
+        "title": "Promotion",
+        "width": 825,
+        "height": 900
       }
     ]
   }

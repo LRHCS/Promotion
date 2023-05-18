@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import rule from "./rule";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { GrLinkNext } from "react-icons/gr";
 
 const subjects = [
   {
@@ -41,7 +40,7 @@ const subjects = [
     name: "Philosophie/Religion",
   },
   {
-    name: "sMathe",
+    name: "Schwerpunkt",
   },
 ];
 
