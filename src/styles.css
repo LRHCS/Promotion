@@ -1,0 +1,70 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #0f0f0f;
+  background-color: #f6f6f6;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  border-radius: 10px;
+}
+
+.main {
+  height: 100px;
+  flex-basis: 100%;
+  background-color: black;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.element {
+  background-color: black;
+  margin: 50px;
+  font-size: 30px;
+  color: white;
+  flex-basis: 25%;
+  height: 100px;
+  top: 50%;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .element {
+    flex-basis: 70%;
+    margin: 30px;
+  }
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .element {
+    flex-basis: 40%;
+    margin: 30px;
+  }
+}
+
+.element > p {
+  margin: 0;
+}
