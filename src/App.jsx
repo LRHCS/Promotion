@@ -32,9 +32,6 @@ const subjects = [
     name: "Geografie",
   },
   {
-    name: "Informatik",
-  },
-  {
     name: "Mathematik",
   },
   {
@@ -44,7 +41,7 @@ const subjects = [
     name: "Philosophie/Religion",
   },
   {
-    name: "sM",
+    name: "sMathe",
   },
 ];
 
@@ -84,7 +81,7 @@ function App() {
     const parsedGrade = grade;
     if (!isNaN(parsedGrade)) {
       let ruleValue = rule(parsedGrade) || 0;
-      if (subject === "Informatik" || subject === "BG/Music") {
+      if (subject === "Philosophie/Religion" || subject === "BG/Music") {
         ruleValue /= 2;
       }
       setGrades((prevGrades) => ({
