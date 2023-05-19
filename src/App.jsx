@@ -48,11 +48,10 @@ function App() {
               key={themeName}
               value={themeName}
               style={{
-                background: themes[themeName].background,
+                background: themes[themeName].cardBackground,
                 color: themes[themeName].text,
                 borderRadius: "10px",
-                height: "7.5px",
-                border: "none",
+                height: "50px",
               }}
             >
               {themeName}

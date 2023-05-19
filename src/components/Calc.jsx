@@ -16,15 +16,22 @@ const StyledDiv = styled.div`
   line-height: 35px;
   border-radius: 10px;
   font-size: larger;
+  box-shadow: 0px 0px 26.3px rgba(0, 0, 0, 0.024),
+    0px 0px 29px rgba(0, 0, 0, 0.047), 0px 0px 27.8px rgba(0, 0, 0, 0.072),
+    0px 0px 25px rgba(0, 0, 0, 0.1);
 `;
 
 const InputGrade = styled.input`
-  width: 70%;
+  width: 50%;
   background-color: ${({ theme }) => theme.cardBackground};
   border: none;
   border-bottom: 2px solid ${({ theme }) => theme.text};
   font-size: medium;
   color: ${({ theme }) => theme.text};
+  align-text: center;
+  margin: auto;
+  text-align: center;
+  padding-right: 5px;
 `;
 
 const TotalGrade = styled.h1`
@@ -34,8 +41,10 @@ const TotalGrade = styled.h1`
   text-align: center;
   vertical-align: middle;
   line-height: 100px;
-  border-radius: 0px 0px 10px 0px;
+  border-radius: 0px 0px 10px 10px;
   width: 100%;
+  box-shadow: 0px 19.7px 29px rgba(0, 0, 0, 0.048),
+    0px 43px 25px rgba(0, 0, 0, 0.1);
 `;
 
 const Calc = () => {
@@ -91,25 +100,25 @@ const GradeCalculator = ({ grades, handleGradeChange }) => {
     <div className="flex-container">
       {subjects.map((subject) => (
         <StyledDiv key={subject.name}>
-          <h3>{subject.name}</h3>
+          <h3 style={{ fontWeight: "50px" }}>{subject.name}</h3>
           <div className="grade">
             <InputGrade
               type="text"
               value={grades[subject.name]?.grade || ""}
               onChange={(e) => handleGradeChange(subject.name, e.target.value)}
-              style={{ color: "white" }}
             />
             {"  >  "}
             {grades[subject.name] && grades[subject.name].ruleValue !== 0 ? (
               <span
                 style={{
                   color: getColorFromValue(grades[subject.name].ruleValue),
+                  marginLeft: "5px ",
                 }}
               >
                 {grades[subject.name].ruleValue}
               </span>
             ) : (
-              0
+              <span>0</span>
             )}
           </div>
         </StyledDiv>

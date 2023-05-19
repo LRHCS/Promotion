@@ -54,20 +54,10 @@ const themesLib = {
     text: "#000000",
     cardBackground: "#9370DB",
   },
-  midnight: {
-    background: "#191970",
-    text: "#FFFFFF",
-    cardBackground: "#000080",
-  },
   ebony: {
     background: "#222222",
     text: "#FFFFFF",
     cardBackground: "#111111",
-  },
-  obsidian: {
-    background: "#000000",
-    text: "#FFFFFF",
-    cardBackground: "#333333",
   },
   charcoal: {
     background: "#383838",
@@ -78,16 +68,6 @@ const themesLib = {
     background: "#121212",
     text: "#FFFFFF",
     cardBackground: "#1E1E1E",
-  },
-  coal: {
-    background: "#434343",
-    text: "#FFFFFF",
-    cardBackground: "#303030",
-  },
-  jet: {
-    background: "#202020",
-    text: "#FFFFFF",
-    cardBackground: "#151515",
   },
   shadow: {
     background: "#333333",
@@ -104,33 +84,57 @@ const themesLib = {
     text: "#FFFFFF",
     cardBackground: "#333333",
   },
+  sunny: {
+    background: "#F0F0F0",
+    text: "#333333",
+    cardBackground: "#CCCCCC",
+  },
+  ocean: {
+    background: "#EAF6FA",
+    text: "#0A3D5A",
+    cardBackground: "#B7DCE2",
+  },
+  mint: {
+    background: "#E6F5EC",
+    text: "#2F7D51",
+    cardBackground: "#B4D9BB",
+  },
+  lavender: {
+    background: "#F4F1FA",
+    text: "#704A9C",
+    cardBackground: "#D4C5E6",
+  },
+  sunshine: {
+    background: "#FFF7E0",
+    text: "#F88C0D",
+    cardBackground: "#FFDDA2",
+  },
+  coral: {
+    background: "#FFEAE9",
+    text: "#FF4542",
+    cardBackground: "#FFB2AF",
+  },
+  blush: {
+    background: "#FDE7E7",
+    text: "#E04D4D",
+    cardBackground: "#FFBFC0",
+  },
+  peach: {
+    background: "#FFE8DB",
+    text: "#FF7F50",
+    cardBackground: "#FFC3A6",
+  },
+  pastel: {
+    background: "#FCEDEA",
+    text: "#A081A2",
+    cardBackground: "#E8CCE2",
+  },
 };
 
-const themes = Object.entries(themesLib)
-  .sort(([, themeA], [, themeB]) => {
-    const colorA = themeA.background;
-    const colorB = themeB.background;
-    return calculateBrightness(colorA) - calculateBrightness(colorB);
-  })
-  .reduce((sorted, [key, value]) => {
-    sorted[key] = value;
-    return sorted;
-  }, {});
+const sortedThemes = Array.from(Object.entries(themesLib)).sort((a, b) =>
+  b[1].cardBackground.localeCompare(a[1].cardBackground)
+);
 
-function calculateBrightness(color) {
-  const rgb = hexToRgb(color);
-  return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
-}
-
-function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
+const themes = Object.fromEntries(sortedThemes);
 
 export default themes;
