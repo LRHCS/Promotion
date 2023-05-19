@@ -49,7 +49,8 @@ function App() {
               value={themeName}
               style={{
                 background: themes[themeName].background,
-                text: themes[themeName].text,
+                color: themes[themeName].text,
+                borderRadius: "10px",
               }}
             >
               {themeName}
