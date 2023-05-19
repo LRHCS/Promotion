@@ -1,4 +1,4 @@
-const themes = {
+const themesLib = {
   materialDark: {
     background: "#263238",
     text: "#FFFFFF",
@@ -105,5 +105,32 @@ const themes = {
     cardBackground: "#333333",
   },
 };
+
+const themes = Object.entries(themesLib)
+  .sort(([, themeA], [, themeB]) => {
+    const colorA = themeA.background;
+    const colorB = themeB.background;
+    return calculateBrightness(colorA) - calculateBrightness(colorB);
+  })
+  .reduce((sorted, [key, value]) => {
+    sorted[key] = value;
+    return sorted;
+  }, {});
+
+function calculateBrightness(color) {
+  const rgb = hexToRgb(color);
+  return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+}
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
 
 export default themes;
