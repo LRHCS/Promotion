@@ -59,8 +59,6 @@ const Calc = () => {
       let ruleValue = rule(parsedGrade) || 0;
       if (subject === "Philosophie/Religion" || subject === "BG/Music") {
         ruleValue /= 2;
-      } else if (subject === "Informatik") {
-        ruleValue *= 0;
       }
       setGrades((prevGrades) => ({
         ...prevGrades,
@@ -69,6 +67,8 @@ const Calc = () => {
           ruleValue,
         },
       }));
+    } else if (subject === "Informatik") {
+      ruleValue = 0;
     } else {
       setGrades((prevGrades) => {
         const updatedGrades = { ...prevGrades };
