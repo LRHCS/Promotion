@@ -52,6 +52,7 @@ function App() {
                 color: themes[themeName].text,
                 borderRadius: "10px",
                 height: "7.5px",
+                border: "none",
               }}
             >
               {themeName}
