@@ -20,7 +20,7 @@ const ThemeSwitcher = styled.select`
 `;
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("materialDark");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");

@@ -1,14 +1,4 @@
 const themes = {
-  light: {
-    background: "#FFFFFF",
-    text: "#ece5c7",
-    cardBackground: "#354259",
-  },
-  dark: {
-    background: "#000000",
-    text: "#FFFFFF",
-    cardBackground: "#354259",
-  },
   materialDark: {
     background: "#263238",
     text: "#FFFFFF",
