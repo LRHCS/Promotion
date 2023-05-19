@@ -67,7 +67,7 @@ const Calc = () => {
           ruleValue,
         },
       }));
-    } else if (subject === "Informatik") {
+    } else if (subject === "Informatik" || subject === "Sport") {
       ruleValue = 0;
     } else {
       setGrades((prevGrades) => {
