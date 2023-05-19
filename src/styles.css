@@ -1,36 +1,12 @@
 @import url("https://fonts.cdnfonts.com/css/hk-groteks");
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
   --card: #354259;
   --main: #ece5c7;
-  --backgroundColor: azure;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
 * {
   margin: 0px;
-  color: var(--main);
   font-family: "HK Grotesk", sans-serif;
-}
-
-.main {
-  height: 100px;
-  background-color: var(--card);
-  font-size: 70px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 100px;
-  border-radius: 0px 0px 10px 0px;
-  width: 100%;
 }
 
 .flex-container {
@@ -40,64 +16,7 @@
   width: 90%;
 }
 
-.element {
-  background-color: var(--card);
-  margin: 50px;
-  font-size: 30px;
-  color: var(--color);
-  flex-basis: 25%;
-  height: 100px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 35px;
-  border-radius: 10px;
-  font-size: larger;
-}
-
-@media only screen and (max-width: 800px) {
-  .element {
-    flex-basis: 70%;
-    margin: 30px;
-  }
-  .flex-container {
-    flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 1500px) {
-  .element {
-    flex-basis: 40%;
-    margin: 30px;
-  }
-}
-
-.input_grade {
-  width: 70%;
-  background-color: var(--card);
-  border: none;
-  border-bottom: 2px solid var(--main);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  font-size: medium;
-}
-.input_grade:focus {
-  border-bottom: 2px solid white;
-}
-
-.page {
-  margin: auto;
-  width: 100%;
-}
-
-button {
-  background-color: var(--card);
-  border: none;
-  margin: 0px;
-  padding: 5px;
-  border-radius: 0px 0px 10px 10px;
-  font-size: larger;
-}
-
+/*Scrollbar*/
 ::-webkit-scrollbar {
   width: 0px;
   border-radius: 10px;
