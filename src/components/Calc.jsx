@@ -3,7 +3,9 @@ import rule from "../rule";
 import subjects from "../data/subjects";
 import { getColorFromValue } from "./ColorCalc";
 import styled from "styled-components";
+import { ask, message } from "@tauri-apps/api/dialog";
 
+// Styled Components
 const StyledDiv = styled.div`
   background-color: ${({ theme }) => theme.cardBackground};
   margin: 30px;
@@ -114,6 +116,7 @@ const Calc = () => {
     }
   };
 
+  //Import, Reset, Export
   const handleImport = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -130,10 +133,15 @@ const Calc = () => {
     reader.readAsText(file);
   };
 
-  const handleReset = () => {
-    setGrades({});
-  };
-  function exportGrades() {
+  async function handleReset() {
+    const confirmed = await ask("Reset?", "Confirm");
+
+    if (confirmed) {
+      setGrades({});
+    }
+  }
+
+  async function exportGrades() {
     const storedGrades = localStorage.getItem("grades");
     if (storedGrades) {
       const gradesJson = JSON.stringify(JSON.parse(storedGrades), null, 2);
@@ -144,6 +152,7 @@ const Calc = () => {
       link.download = "grades.json";
       link.click();
       URL.revokeObjectURL(url);
+      await message(`Downloads/${link.download}`, "Path to Download");
     }
   }
 
