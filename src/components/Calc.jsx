@@ -163,7 +163,7 @@ const Calc = () => {
       <div className="flex-container" style={{ marginTop: "10px" }}>
         <Button_File_Change onClick={exportGrades}>Export</Button_File_Change>
         <Import_Input type="file" id="json" onChange={handleImport} />
-        <Label for="json">Upload</Label>
+        <Label htmlFor="json">Upload</Label>
         <Button_File_Change onClick={handleReset}>Reset</Button_File_Change>
       </div>
 
