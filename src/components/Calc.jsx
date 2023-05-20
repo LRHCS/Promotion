@@ -88,7 +88,7 @@ const Calc = () => {
   }, [grades]);
 
   const handleGradeChange = (subject, grade) => {
-    const parsedGrade = parseFloat(grade);
+    const parsedGrade = grade;
     if (!isNaN(parsedGrade)) {
       let ruleValue = rule(parsedGrade) || 0;
       if (subject === "Philosophie/Religion" || subject === "BG/Music") {
