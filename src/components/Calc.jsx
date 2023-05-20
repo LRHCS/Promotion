@@ -41,7 +41,7 @@ const TotalGrade = styled.h1`
   text-align: center;
   vertical-align: middle;
   line-height: 100px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 20px 20px;
   width: 100%;
   box-shadow: 0px 19.7px 29px rgba(0, 0, 0, 0.048),
     0px 43px 25px rgba(0, 0, 0, 0.1);
@@ -56,6 +56,7 @@ const Button_File_Change = styled.button`
   padding: 10px 20px;
   font-size: 15px;
   border-radius: 10px;
+  box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.07);
 `;
 
 const Import_Input = styled.input`
@@ -71,6 +72,7 @@ const Label = styled.label`
   margin: 0px 20px 0px 0px;
   font-size: 15px;
   border-radius: 10px;
+  box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.07);
 `;
 
 const Calc = () => {
@@ -145,31 +147,14 @@ const Calc = () => {
     }
   }
 
-  const calculateTotalPoints = () => {
-    let totalPoints = 0;
-    for (const subject of subjects) {
-      const subjectName = subject.name;
-      const grade = grades[subjectName]?.grade;
-      const ruleValue = grades[subjectName]?.ruleValue;
-
-      if (grade && !isNaN(grade) && ruleValue) {
-        totalPoints += ruleValue;
-      }
-    }
-    return totalPoints;
-  };
-
   return (
     <div>
       <TotalGradeCalculator grades={grades} />
 
-      <div style={{ margin: "10px 0px 0px 0px", display: "flex" }}>
-        {" "}
-        <Button_File_Change onClick={exportGrades}>
-          Export Grades
-        </Button_File_Change>
+      <div className="flex-container" style={{ marginTop: "10px" }}>
+        <Button_File_Change onClick={exportGrades}>Export</Button_File_Change>
         <Import_Input type="file" id="json" onChange={handleImport} />
-        <Label for="json">Click me to upload</Label>
+        <Label for="json">Upload</Label>
         <Button_File_Change onClick={handleReset}>Reset</Button_File_Change>
       </div>
 
