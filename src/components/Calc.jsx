@@ -47,10 +47,35 @@ const TotalGrade = styled.h1`
     0px 43px 25px rgba(0, 0, 0, 0.1);
 `;
 
+const Button_File_Change = styled.button`
+  background-color: ${({ theme }) => theme.cardBackground};
+  border: none;
+  color: ${({ theme }) => theme.text};
+  margin-right: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 10px;
+`;
+
+const Import_Input = styled.input`
+  display: none;
+`;
+
+const Label = styled.label`
+  background-color: ${({ theme }) => theme.cardBackground};
+  border: none;
+  color: ${({ theme }) => theme.text};
+  padding: 10px 20px;
+  font-weight: bold;
+  margin: 0px 20px 0px 0px;
+  font-size: 15px;
+  border-radius: 10px;
+`;
+
 const Calc = () => {
   const [grades, setGrades] = useState({});
 
-  // Storage
   useEffect(() => {
     const storedGrades = localStorage.getItem("grades");
     if (storedGrades) {
@@ -62,8 +87,8 @@ const Calc = () => {
     localStorage.setItem("grades", JSON.stringify(grades));
   }, [grades]);
 
-  function handleGradeChange(subject, grade) {
-    const parsedGrade = grade;
+  const handleGradeChange = (subject, grade) => {
+    const parsedGrade = parseFloat(grade);
     if (!isNaN(parsedGrade)) {
       let ruleValue = rule(parsedGrade) || 0;
       if (subject === "Philosophie/Religion" || subject === "BG/Music") {
@@ -85,56 +110,112 @@ const Calc = () => {
         return updatedGrades;
       });
     }
+  };
+
+  const handleImport = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const importedGrades = JSON.parse(e.target.result);
+        setGrades(importedGrades);
+      } catch (error) {
+        console.error("Error parsing JSON file:", error);
+      }
+    };
+
+    reader.readAsText(file);
+  };
+
+  const handleReset = () => {
+    setGrades({});
+  };
+  function exportGrades() {
+    const storedGrades = localStorage.getItem("grades");
+    if (storedGrades) {
+      const gradesJson = JSON.stringify(JSON.parse(storedGrades), null, 2);
+      const blob = new Blob([gradesJson], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "grades.json";
+      link.click();
+      URL.revokeObjectURL(url);
+    }
   }
+
+  const calculateTotalPoints = () => {
+    let totalPoints = 0;
+    for (const subject of subjects) {
+      const subjectName = subject.name;
+      const grade = grades[subjectName]?.grade;
+      const ruleValue = grades[subjectName]?.ruleValue;
+
+      if (grade && !isNaN(grade) && ruleValue) {
+        totalPoints += ruleValue;
+      }
+    }
+    return totalPoints;
+  };
 
   return (
     <div>
       <TotalGradeCalculator grades={grades} />
-      <GradeCalculator grades={grades} handleGradeChange={handleGradeChange} />
-    </div>
-  );
-};
 
-const GradeCalculator = ({ grades, handleGradeChange }) => {
-  return (
-    <div className="flex-container">
-      {subjects.map((subject) => (
-        <StyledDiv key={subject.name}>
-          <h3 style={{ fontWeight: "50px" }}>{subject.name}</h3>
-          <div className="grade">
-            <InputGrade
-              type="text"
-              value={grades[subject.name]?.grade || ""}
-              onChange={(e) => handleGradeChange(subject.name, e.target.value)}
-            />
-            {"  >  "}
-            {grades[subject.name] && grades[subject.name].ruleValue !== 0 ? (
-              <span
-                style={{
-                  color: getColorFromValue(grades[subject.name].ruleValue),
-                  marginLeft: "5px ",
-                }}
-              >
-                {grades[subject.name].ruleValue}
-              </span>
-            ) : (
-              <span>0</span>
-            )}
-          </div>
-        </StyledDiv>
-      ))}
+      <div style={{ margin: "10px 0px 0px 0px", display: "flex" }}>
+        {" "}
+        <Button_File_Change onClick={exportGrades}>
+          Export Grades
+        </Button_File_Change>
+        <Import_Input type="file" id="json" onChange={handleImport} />
+        <Label for="json">Click me to upload</Label>
+        <Button_File_Change onClick={handleReset}>Reset</Button_File_Change>
+      </div>
+
+      <div className="flex-container">
+        {subjects.map((subject) => (
+          <StyledDiv key={subject.name}>
+            <h3>{subject.name}</h3>
+            <div className="grade">
+              <InputGrade
+                type="text"
+                value={grades[subject.name]?.grade || ""}
+                onChange={(e) =>
+                  handleGradeChange(subject.name, e.target.value)
+                }
+              />
+              {" > "}
+              {grades[subject.name] && grades[subject.name].ruleValue !== 0 ? (
+                <b>
+                  <span
+                    style={{
+                      color: getColorFromValue(grades[subject.name].ruleValue),
+                      marginLeft: "5px",
+                    }}
+                  >
+                    {grades[subject.name].ruleValue}
+                  </span>
+                </b>
+              ) : (
+                0
+              )}
+            </div>
+          </StyledDiv>
+        ))}
+      </div>
     </div>
   );
 };
 
 const TotalGradeCalculator = ({ grades }) => {
-  function calculateTotalPoints(grades) {
+  const calculateTotalPoints = (grades) => {
     let totalPoints = 0;
     for (const grade of Object.values(grades)) {
       totalPoints += grade.ruleValue;
     }
     return totalPoints;
-  }
+  };
 
   return (
     <TotalGrade

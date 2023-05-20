@@ -58,6 +58,7 @@ function App() {
             </option>
           ))}
         </ThemeSwitcher>
+
         <Calc />
       </Container>
     </ThemeProvider>
