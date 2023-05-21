@@ -1,22 +1,14 @@
-// Libraries
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
-
-// Algorithms
 import Calc from "./components/Calc";
-
-// Themes
 import themes from "./data/themes";
+import ThemePage from "./components/ThemePage";
+import Navbar from "./components/NavBar";
 
 const Container = styled.div`
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
-`;
-
-const ThemeSwitcher = styled.select`
-  background: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.text};
-  width: 100%;
 `;
 
 function App() {
@@ -37,29 +29,18 @@ function App() {
   };
 
   return (
-    <ThemeProvider
-      theme={themes[theme]}
-      style={{ margin: "auto", width: "100%" }}
-    >
+    <ThemeProvider theme={themes[theme]}>
       <Container>
-        <ThemeSwitcher onChange={(e) => toggleTheme(e.target.value)}>
-          {Object.keys(themes).map((themeName) => (
-            <option
-              key={themeName}
-              value={themeName}
-              style={{
-                background: themes[themeName].cardBackground,
-                color: themes[themeName].text,
-                borderRadius: "10px",
-                height: "50px",
-              }}
-            >
-              {themeName}
-            </option>
-          ))}
-        </ThemeSwitcher>
-
-        <Calc />
+        <Routes>
+          <Route exact path="/" element={<Calc />}></Route>
+          <Route
+            path="/theme"
+            element={
+              <ThemePage selectedTheme={theme} onThemeChange={toggleTheme} />
+            }
+          ></Route>
+        </Routes>
+        <Navbar />
       </Container>
     </ThemeProvider>
   );
