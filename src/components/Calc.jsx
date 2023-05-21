@@ -22,6 +22,7 @@ const StyledDiv = styled.div`
   box-shadow: 0px 0px 26.3px rgba(0, 0, 0, 0.024),
     0px 0px 29px rgba(0, 0, 0, 0.047), 0px 0px 27.8px rgba(0, 0, 0, 0.072),
     0px 0px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${({ theme }) => theme.text};
 `;
 
 const InputGrade = styled.input`
@@ -45,9 +46,12 @@ const TotalGrade = styled.h1`
   vertical-align: middle;
   line-height: 100px;
   border-radius: 0px 0px 20px 20px;
-  width: 100%;
+  width: 99.5%;
   box-shadow: 0px 19.7px 29px rgba(0, 0, 0, 0.048),
     0px 43px 25px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid ${({ theme }) => theme.text};
+  border-left: 2px solid ${({ theme }) => theme.text};
+  border-right: 2px solid ${({ theme }) => theme.text};
 `;
 
 const Calc = () => {

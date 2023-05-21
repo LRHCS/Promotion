@@ -8,8 +8,13 @@ const Nav = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 95%;
+  width: 94.5%;
   border-radius: 15px 15px 0px 0px;
+  border-top: 2px solid ${({ theme }) => theme.text};
+  border-left: 2px solid ${({ theme }) => theme.text};
+  border-right: 2px solid ${({ theme }) => theme.text};
+  justify-content: center;
+  text-align: center;
 `;
 
 const NavList = styled.ul`
@@ -20,7 +25,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  margin: 0 10px;
+  margin: 0 40px;
 `;
 
 const NavLink = styled(Link)`
@@ -29,8 +34,8 @@ const NavLink = styled(Link)`
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s;
-  font-size: 20px;
-  font-weight: 500px;
+  font-size: 23px;
+
   &:hover {
     background-color: ${({ theme }) => theme.background};
   }
@@ -41,10 +46,14 @@ const Navbar = () => {
     <Nav>
       <NavList>
         <NavItem>
-          <NavLink to="/">Noten</NavLink>
+          <b>
+            <NavLink to="/">Noten</NavLink>
+          </b>
         </NavItem>
         <NavItem>
-          <NavLink to="/theme">Theme</NavLink>
+          <b>
+            <NavLink to="/theme">Theme</NavLink>
+          </b>
         </NavItem>
       </NavList>
     </Nav>
