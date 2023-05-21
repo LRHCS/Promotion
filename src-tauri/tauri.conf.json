@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Promotion",
-    "version": "1.0.1"
+    "version": "1.1.1a"
   },
   "tauri": {
     "allowlist": {
@@ -43,10 +43,13 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://releases.myapp.com/{{target}}/{{arch}}/{{current_version}}"
+        "https://github.com/LRHCS/Promotion/releases/download/{{current_version}}/Promotion_1.0.1_x64-setup.exe"
       ],
       "dialog": true,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQ1Q0Y3NjA2QUIzRTYzRjgKUldUNFl6NnJCbmJQUlFRREt1dWhVNFh0RHg3cFhabEU4RlRsQWw0M2NrSWQzQm5iWTgyUlZCK0MK"
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQ1Q0Y3NjA2QUIzRTYzRjgKUldUNFl6NnJCbmJQUlFRREt1dWhVNFh0RHg3cFhabEU4RlRsQWw0M2NrSWQzQm5iWTgyUlZCK0MK",
+      "windows": {
+        "installMode": "passive"
+      }
     },
     "windows": [
       {
