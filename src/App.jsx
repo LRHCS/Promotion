@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Calc from "./components/Calc";
 import themes from "./data/themes";
 import ThemePage from "./components/ThemePage";
-import Navbar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 
 const Container = styled.div`
   background: ${({ theme }) => theme.background};
@@ -40,7 +40,7 @@ function App() {
             }
           ></Route>
         </Routes>
-        <Navbar />
+        <NavBar />
       </Container>
     </ThemeProvider>
   );
