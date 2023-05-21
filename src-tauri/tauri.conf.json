@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Promotion",
-    "version": "1.1.1a"
+    "version": "1.1.1"
   },
   "tauri": {
     "allowlist": {

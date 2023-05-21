@@ -41,7 +41,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Navbar = () => {
+const NavBar = () => {
   return (
     <Nav>
       <NavList>
@@ -60,4 +60,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;
