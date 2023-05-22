@@ -54,10 +54,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "resizable": false,
+        "resizable": true,
         "title": "Promotion",
         "width": 825,
-        "height": 1000
+        "height": 800
       }
     ]
   }
