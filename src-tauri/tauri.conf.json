@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Promotion",
-    "version": "1.2.0"
+    "version": "1.2.0.2"
   },
   "tauri": {
     "allowlist": {
@@ -53,7 +53,7 @@
     },
     "windows": [
       {
-        "fullscreen": false,
+        "fullscreen": true,
         "resizable": true,
         "title": "Promotion",
         "width": 825,
