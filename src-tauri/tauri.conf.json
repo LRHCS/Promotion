@@ -53,7 +53,7 @@
     },
     "windows": [
       {
-        "fullscreen": true,
+        "fullscreen": false,
         "resizable": true,
         "title": "Promotion",
         "width": 825,

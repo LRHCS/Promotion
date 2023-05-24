@@ -22,6 +22,9 @@ const StyledDiv = styled.div`
   box-shadow: 0px 0px 26.3px rgba(0, 0, 0, 0.024),
     0px 0px 29px rgba(0, 0, 0, 0.047), 0px 0px 27.8px rgba(0, 0, 0, 0.072),
     0px 0px 25px rgba(0, 0, 0, 0.1);
+  @media only screen and (max-width: 600px) {
+    flex-basis : 100%;
+  }
 `;
 
 const InputGrade = styled.input`
